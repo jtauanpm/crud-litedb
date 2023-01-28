@@ -1,7 +1,15 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using crud_litedb.Repositories;
+using crud_litedb.Services;
+using Microsoft.Extensions.DependencyInjection;
 
-using crud_litedb.Models;
-using LiteDB;
+var serviceCollection = new ServiceCollection();
+ConfigureServices(serviceCollection);
+
+var serviceProvider = serviceCollection.BuildServiceProvider();
+var personService = serviceProvider.GetService<IPersonService>();
+
+Menu();
+
 
 //AddPerson(new Person{Name = "Jonathan", Age = 19}, CreateDb());
 //AddPerson(new Person{Name = "Fulano", Age = 30}, CreateDb());
@@ -10,42 +18,39 @@ using LiteDB;
 //DeletePerson(3, CreateDb());
 //GetAllPerson(CreateDb());
 
-static LiteDatabase CreateDb()
+void ConfigureServices(IServiceCollection service)
 {
-    return new LiteDatabase("Data.db");
+    service
+        .AddScoped<IPersonRepository, PersonRepository>()
+        .AddScoped<IPersonService, PersonService>();
+    
 }
 
-static void AddPerson(Person person, LiteDatabase db)
+void Menu()
 {
-    db.GetCollection<Person>().Insert(person);
-    db.Commit();
-}
-
-static void GetPerson(int id, LiteDatabase db)
-{
-    if (!db.CollectionExists("Person")) return;
-    var person = db.GetCollection<Person>().FindOne(p => p.Id == id);
-    Console.WriteLine(person.ToString());
-}
-
-static void GetAllPerson(LiteDatabase db)
-{
-    if (!db.CollectionExists("Person")) return;
-    var people = db.GetCollection<Person>().FindAll().ToList();
-    foreach (var person in people)
+    Console.WriteLine("Type a number:" +
+                      "1 - AddPerson" +
+                      "2 - GetPerson" +
+                      "3 - GetAllPerson" +
+                      "4 - UpdatePerson" +
+                      "5 - DeletePerson");
+    var choice = Console.ReadLine();
+    switch (choice)
     {
-        Console.WriteLine(person.ToString());
+        case "1":
+            personService!.AddPerson();
+            break;
+        case "2":
+            personService!.GetPerson();
+            break;
+        case "3":
+            personService!.GetAllPerson();
+            break;
+        case "4":
+            personService!.UpdatePerson();
+            break;
+        case "5":
+            personService!.DeletePerson();
+            break;
     }
-}
-
-static void UpdatePerson(Person person, LiteDatabase db)
-{
-    if (!db.CollectionExists("Person")) return;
-    db.GetCollection<Person>().Update(person);
-}
-
-static void DeletePerson(int id, LiteDatabase db)
-{
-    if (!db.CollectionExists("Person")) return;
-    db.GetCollection<Person>().Delete(id);
 }
