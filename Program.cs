@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using crud_litedb.Models;
 using LiteDB;
 
 //AddPerson(new Person{Name = "Jonathan", Age = 19}, CreateDb());
@@ -47,16 +48,4 @@ static void DeletePerson(int id, LiteDatabase db)
 {
     if (!db.CollectionExists("Person")) return;
     db.GetCollection<Person>().Delete(id);
-}
-
-public class Person
-{
-    public int Id { get; set; }
-    public string? Name { get; set; }
-    public int Age { get; set; }
-
-    public override string ToString()
-    {
-        return $"Name: {Name}, Age: {Age}, Id: {Id}";
-    }
 }
