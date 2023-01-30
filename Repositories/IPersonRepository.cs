@@ -11,7 +11,7 @@ public interface IPersonRepository
 
     public IEnumerable<Person>? GetAllPerson();
 
-    public void UpdatePerson(Person person);
+    public bool UpdatePerson(Person person);
 
-    public void DeletePerson(int id);
+    public bool DeletePerson(int id);
 }

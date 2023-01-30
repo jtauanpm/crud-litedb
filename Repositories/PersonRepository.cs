@@ -24,21 +24,25 @@ public class PersonRepository : IPersonRepository
         return !db.CollectionExists("Person") ? null : db.GetCollection<Person>().FindAll();
     }
 
-    public void UpdatePerson(Person person)
+    public bool UpdatePerson(Person person)
     {
         var db = CreateDb();
-        if (!db.CollectionExists("Person")) return;
-        db.GetCollection<Person>().Update(person);
+        if (!db.CollectionExists("Person")) return false;
+        var response = db.GetCollection<Person>().Update(person);
+        db.Commit();
+        return response;
     }
 
-    public void DeletePerson(int id)
+    public bool DeletePerson(int id)
     {
         var db = CreateDb();
-        if (!db.CollectionExists("Person")) return;
-        db.GetCollection<Person>().Delete(id);
+        if (!db.CollectionExists("Person")) return false;
+        var response = db.GetCollection<Person>().Delete(id);
+        db.Commit();
+        return response;
     }
     
-    private LiteDatabase CreateDb()
+    private static LiteDatabase CreateDb()
     {
         return new LiteDatabase("Data.db");
     }
