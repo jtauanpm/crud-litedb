@@ -6,7 +6,7 @@ public interface IPersonService
 {
     public void AddPerson();
 
-    public void GetPerson();
+    public void GetPersonById();
 
     public void GetAllPerson();
 

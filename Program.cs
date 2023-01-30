@@ -38,7 +38,7 @@ void Menu()
                 personService!.AddPerson();
                 break;
             case "2":
-                personService!.GetPerson();
+                personService!.GetPersonById();
                 break;
             case "3":
                 personService!.GetAllPerson();

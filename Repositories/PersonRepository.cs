@@ -12,7 +12,7 @@ public class PersonRepository : IPersonRepository
         db.Commit();
     }
 
-    public Person? GetPerson(int id)
+    public Person? GetPersonById(int id)
     {
         var db = CreateDb();
         return !db.CollectionExists("Person") ? null : db.GetCollection<Person>().FindOne(p => p.Id == id);
