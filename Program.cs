@@ -22,16 +22,16 @@ void Menu()
     while (true)
     {
         Console.Clear();
-        Console.Write(@"1 - AddPerson" +
-                      "2 - GetPerson" +
-                      "3 - GetAllPerson" +
-                      "4 - UpdatePerson" +
-                      "5 - DeletePerson" +
-                      "0 - Exit" +
+        Console.Write("1 - AddPerson\n" +
+                      "2 - GetPerson\n" +
+                      "3 - GetAllPerson\n" +
+                      "4 - UpdatePerson\n" +
+                      "5 - DeletePerson\n" +
+                      "0 - Exit\n" +
                       "Type a number: ");
         var choice = Console.ReadLine();
         Console.Clear();
-        if(choice == "0") break;
+        if(choice == "0") Environment.Exit(0);
         switch (choice)
         {
             case "1":
