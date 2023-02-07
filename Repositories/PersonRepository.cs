@@ -15,7 +15,8 @@ public class PersonRepository : IPersonRepository
     public Person? GetPersonById(int id)
     {
         var db = CreateDb();
-        return !db.CollectionExists("Person") ? null : db.GetCollection<Person>().FindOne(p => p.Id == id);
+        return !db.CollectionExists("Person") ? 
+            null : db.GetCollection<Person>().FindOne(p => p.Id == id);
     }
 
     public IEnumerable<Person>? GetAllPerson()
