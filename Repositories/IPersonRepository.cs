@@ -8,6 +8,8 @@ public interface IPersonRepository
     public void AddPerson(Person person);
 
     public Person? GetPersonById(int id);
+	
+	ok
 
     public IEnumerable<Person>? GetAllPerson();
 
