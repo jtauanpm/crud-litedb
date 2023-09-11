@@ -15,7 +15,6 @@ public class PersonService : IPersonService
     {
         var person = FillPerson();
         if (person != null) _personRepository.AddPerson(person);
-        
     }
 
     public void GetPersonById()
