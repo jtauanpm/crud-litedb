@@ -4,7 +4,7 @@ using crud_litedb.Services;
 using Moq;
 using Xunit;
 
-namespace crud_litedb.UnitTests;
+namespace crud_litedb.unittests;
 
 public class PersonServiceTests
 {
