@@ -14,7 +14,8 @@ void ConfigureServices(IServiceCollection service)
 {
     service
         .AddScoped<IPersonRepository, PersonRepository>()
-        .AddScoped<IPersonService, PersonService>();
+        .AddScoped<IPersonService, PersonService>()
+        .AddScoped<IUserInputService, UserInputService>();
 }
 
 void Menu()
