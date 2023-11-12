@@ -5,7 +5,7 @@ using FluentAssertions;
 using Moq;
 using Xunit;
 
-namespace crud_litedb.unittests;
+namespace crud_litedb.unittests.Services;
 
 public class PersonServiceTests
 {
