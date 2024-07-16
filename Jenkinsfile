@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-         stage("Build") {
+        stage("Build") {
             when {
                 expression { return env.TAG_NAME }
             }
