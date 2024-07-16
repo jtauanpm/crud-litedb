@@ -16,6 +16,17 @@ pipeline {
                 }
             }
         }
+
+         stage("Build for Tag") {
+            when {
+                expression { return env.GIT_TAG_NAME }
+            }
+            steps {
+                script {
+                    echo "Building tag: ${env.GIT_TAG_NAME}"
+                }
+            }
+        }
     }
 }
 
