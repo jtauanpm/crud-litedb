@@ -13,6 +13,18 @@ pipeline {
             steps {
                 script {
                     echo '!!!!!!!!!!build!!!!!!!!!!!'
+                    echo "Building tag: ${env.TAG_NAME}"
+                }
+            }
+        }
+
+         stage("Build") {
+            when {
+                expression { return env.TAG_NAME }
+            }
+            steps {
+                script {
+                    echo "Building tag: ${env.TAG_NAME}"
                 }
             }
         }
