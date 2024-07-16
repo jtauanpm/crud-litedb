@@ -13,18 +13,18 @@ pipeline {
             steps {
                 script {
                     echo '!!!!!!!!!!build!!!!!!!!!!!'
-                    echo "Building tag: ${env.GIT_TAG_NAME}"
+                    echo "Building tag: ${env.TAG_NAME}"
                 }
             }
         }
 
          stage("Build for Tag") {
             when {
-                expression { return env.GIT_TAG_NAME }
+                expression { return env.TAG_NAME }
             }
             steps {
                 script {
-                    echo "Building tag: ${env.GIT_TAG_NAME}"
+                    echo "Building tag: ${env.TAG_NAME}"
                 }
             }
         }
