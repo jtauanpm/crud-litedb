@@ -13,6 +13,7 @@ pipeline {
             steps {
                 script {
                     echo '!!!!!!!!!!build!!!!!!!!!!!'
+                    echo "Building tag: ${env.GIT_TAG_NAME}"
                 }
             }
         }
